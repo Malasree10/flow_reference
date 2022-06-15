@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="8fc44450-980a-4bce-b578-4d2e4d1bad11" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="flowreferenceFlow" doc:id="ac55a6c6-e788-4e54-b576-9c556e0c466b" >
+		<http:listener doc:name="Listener" doc:id="710cedbc-7de4-40e3-b395-88a83f54c254" config-ref="HTTP_Listener_config" path="/flow"/>
+		<set-payload value="introduction to flow reference" doc:name="Set Payload" doc:id="ac9fd091-b033-46ce-a0b2-8da366268967" />
+		<flow-ref doc:name="Flow Reference" doc:id="70b58dfb-8493-45b2-aa93-6d2c4aaae827" name="flowreferenceFlow1"/>
+	</flow>
+	<flow name="flowreferenceFlow1" doc:id="745a8fdb-a5f1-4dd7-9fe9-ee9e446edd7c" >
+		<logger level="INFO" doc:name="Logger" doc:id="55bd53f0-79d2-48d2-92d9-bd0658c8c5d6" message="#['completed']"/>
+	</flow>
+</mule>
